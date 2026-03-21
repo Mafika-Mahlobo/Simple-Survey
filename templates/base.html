@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/output.css') }}">
+    <script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <title>{% block title %} Home - Survey {% endblock %}</title>
+</head>
+<body >
+    <!-- Overlay -->
+     <div class=" hidden z-20 top-0 left-0 w-full h-full bg-black/40 backdrop-blur-sm flex-col justify-center items-center overlay">
+            <div class="flex flex-col p-5 spinner">
+                <div class="">
+                    <img class="w-40 h-auto" src="{{ url_for('static', filename='images/spinner.gif') }}" alt="Loading">
+                </div>
+                <div class="flex justify-center p-2">
+                    <p class="text-gray-300">Processing </p>
+                </div>
+            </div>
+            <div class="hidden flex-col message-box">
+                <div class="flex-col items-center success">
+                    <i class="fa-regular fa-circle-check text-green-700 text-9xl p-5"></i>
+                    <p class="text-gray-200 sucess-message">{{ success }}</p>
+                </div>
+                <div class="flex-col items-center error">
+                    <i class="fa-solid fa-triangle-exclamation text-red-500 text-9xl p-5"></i>
+                    <p class="text-gray-200 error-message">{{ error }}</p>
+                </div>
+            </div>
+
+     </div>
+
+    <!-- Header -->
+    <header class="flex justify-between p-0 m-0 bg-gray-200 shadow-sm shadow-gray-900">
+        <span class="m-5">_Surveys</span>
+
+        <!-- Desktop menu -->
+        <ul class="hidden sm:flex">
+            <a href="{{ url_for('main') }}"><li class="p-5 m-0 h-full border-l-gray-700 border-r-gray-700 hover:bg-gray-500 active:bg-gray-500 cursor-pointer">Complete Survey</li></a>
+            <a href="{{ url_for('survery_results') }}"><li class="p-5 m-0 h-full border-l-gray-700 border-r-gray-700 hover:bg-gray-500 active:bg-gray-500 cursor-pointer">View Results</li></a>
+        </ul>
+
+        <div class="sm:hidden text-xl mobile-nav p-5">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <nav class="m-0 flex-col  hidden bg-gray-300 mobile-options">
+        <ul >
+            <a href="{{ url_for('main') }}"><li class="flex justify-center w-full p-1 border-b border-gray-200">Complete Survey</li></a>
+            <a href="{{ url_for('survery_results') }}"><li class="flex justify-center w-full p-1 border-b border-gray-200">View Results</li></a>
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <section class="flex justify-between p-5 m-0 min-h-15 bg-gray-200 shadow-sm shadow-gray-900"></section>
+</body>
+</html>

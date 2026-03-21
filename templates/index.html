@@ -1,194 +1,155 @@
-<!DOCTYPE html> 
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport", content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
 
-	<!-- styles -->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/layout.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/componets.css') }}">
-	<title>_Surverys</title>
-</head>
-<body>
-	<div class="page-pop-up">
-		<section class="loading-icon">
-			<div class="loader"></div>
-		</section>
-		<section class="message">
-			<p id="response">Processing...</p>
-		</section>
-	</div>
-	<div class="server-feedback">
-		<p class="result result-1">
-			<i class="fa-regular fa-circle-check"></i>
-		</p>
-		<p class="result result-2">
-			<i class="fa-solid fa-triangle-exclamation"></i>
-		</p>
-		<p id="sucess-message">{{ success }}</p>
-		<p id="error-message">{{ error }}</p>
-	</div>
-	<section class="app-contaniner">
-		<header class="header-container">
-			<div class="logo">
-				<p class="logo-style">_Surverys</p>
-			</div>
-			<div class="mobile-nav">
-					<p class="mobile-menu"><i class="fa-solid fa-bars"></i></p>
-			</div>
-			<div class="desktop-nav-container">
-				<a href="#">
-				<div class="desktop-nav desktop-nav-active">
-					<ul class="nav-links desktop-nav-link">
-						<li>Complete Survery</li>
-					</ul>
+{% block content %}
+    <section class="flex flex-col bg-gray-100 h-fit">
+        <form action="/submit" method="post" id="form">
+            <div class="flex flex-col flex-wrap md:grid grid-cols-3">
+                <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl">
+                <legend>Personal information</legend>
+                <label class="pt-5" for="name">Full name: </label>
+                <input type="text" class="border border-blue-700 rounded-md text-center" name="fullname" id="name">
+                <label class="pt-5"  for="email">Email: </label>
+                <input type="text" class="border border-blue-700 rounded-md text-center" name="email" id="email">
+                <label class="pt-5" for="age">Age: </label>
+                <input type="number" class="border border-blue-700 rounded-md text-center" name="age" id="age">
+                <label class="pt-5" for="phone">Phone number: </label>
+                <input type="number" class="border border-blue-700 rounded-md text-center" name="phone_number" id="phone">
+            </fieldset>
+            <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl">
+                <legend class="pt-5" for="">What is your favorite food? </legend>
+                <ul class="p-1">
+                    <li>
+                        <input class="" type="checkbox" name="pizza" id="g">
+                        <label>Pizza</label>
+                    </li>
+                    <li>
+                        <input class="" type="checkbox" name="pasta">
+                        <label>Pasta</label>
+                    </li>
+                    <li>
+                        <input class="" type="checkbox" name="pap">
+                        <label>Pap and Wors</label>
+                    </li>
+                    <li>
+                        <input  class="" type="checkbox" name="other">
+                        <label>Other</label>
+                    </li>
+                </ul>
+            </fieldset>
+            <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl">
+                <div class="p-3">
+                    <p class="font-bold">On a scale 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
+                </div>
+                <div class="p-3">
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+						<p class="">I like to watch movies</p>
+                    </div>
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+						<div class="flex items-center">
+							<input type="radio" id="movie-1" class="hidden peer" name="movie" value="1" required>
+							<label for="movie-1" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">1</label>
+						</div>
+						<div class="flex items-center">
+							<input type="radio" id="movie-2" class="hidden peer" name="movie" value="2" required>
+							<label for="movie-2" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">2</label>
+						</div>
+						<div class="flex items-center">
+							<input type="radio" id="movie-3" class="hidden peer" name="movie" value="3" required>
+							<label for="movie-3" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">3</label>
+						</div>
+						<div class="flex items-center">
+							<input type="radio" id="movie-4" class="hidden peer" name="movie" value="4" required>
+							<label for="movie-4" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">4</label>
+						</div>
+						<div class="flex items-center">
+							<input type="radio" id="movie-5" class="hidden peer" name="movie" value="5" required>
+							<label for="movie-5" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">5</label>
+						</div>
+                    </div>
+                    <div class="p-3 flex flex-wrap justify-center gap-2">
+                        <p class="">I like to listen to radio</p>
+                    </div>
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="radio-1" class="hidden peer"  name="radio" value="1" required>
+						    <label for="radio-1" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">1</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="radio-2" class="hidden peer" name="radio" value="2" required>
+						    <label for="radio-2" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">2</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="radio-3" class="hidden peer" name="radio" value="3" required>
+						    <label for="radio-3" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">3</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="radio-4" class="hidden peer"  name="radio" value="4" required>
+						    <label for="radio-4" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">4</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="radio-5" class="hidden peer"  name="radio" value="5" required>
+						    <label for="radio-5" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">5</label>
+                        </div>
+                    </div>
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+							<p class="">I like to eat out</p>
+                    </div>
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="eat-1" class="hidden peer" name="eat" value="1" required>
+						    <label for="eat-1" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">1</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" id="eat-2" class="hidden peer" name="eat" value="2" required>
+						    <label for="eat-2" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">2</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="eat-3" class="hidden peer" name="eat" value="3" required>
+						    <label for="eat-3" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">3</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="eat-4" class="hidden peer" name="eat" value="4" required>
+						    <label for="eat-4" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">4</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="eat-5" class="hidden peer" name="eat" value="5" required>
+						    <label for="eat-5" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">5</label>
+                        </div>
+                    </div>
+
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+						<p class="">I like to watch TV</p>
+                    </div>
+					<div class="p-3 flex flex-wrap justify-center gap-2">
+                        <div class="flex items-center">
+                            <input type="radio" id="tv-1" class="hidden peer" name="tv" value="1" required>
+						    <label for="tv-1" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">1</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="tv-2" class="hidden peer" name="tv" value="2" required>
+						    <label for="tv-2" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">2</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="tv-3" class="hidden peer" name="tv" value="3" required>
+						    <label for="tv-3" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">3</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="tv-4" class="hidden peer" name="tv" value="4" required>
+						    <label for="tv-4" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">4</label>
+                        </div>
+						<div class="flex items-center">
+                            <input type="radio" id="tv-5" class="hidden peer" name="tv" value="5" required>
+						    <label for="tv-5" class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-200 to-blue-300 rounded-2xl border border-gray-200 shadow-2xl shadow-gray-900 peer-checked:bg-blue-900 peer-checked:text-white peer-checked:border-blue-700">5</label>
+                        </div>		
+                    </div>
 				</div>
-				</a>
-				<a href="{{ url_for('survery_results') }}">
-				<div class="desktop-nav menu-item-click">
-					<ul class="nav-links desktop-nav-link ">
-						<li>View Results</li>
-					</ul>
-				</div>
-				</a>
-			</div>
-		</header>
-		<div class="mobile-options">
-			<nav >
-				<ul class="nav-links">
-					<a href="#"><li class="mobile-menu-list-items list-item-active">Complete Survery</li></a>
-					<a href="{{ url_for('survery_results') }}"><li class="mobile-menu-list-items menu-item-click">View Results</li></a>
-				</ul>
-			</nav>
-		</div>
-		<form id="form"  action="/submit" method="post">
-		<section class="body-container">
-			<section class="section-one body-sections">
-				<p class="section-one-heading">Personal Details</p>
-			</section>
-			<section class="section-two-info body-sections input-sections">
-				<div class="desktop-info-form">
-					<div class="subsection-two">
-						<label for="name"  class="personal-detail-label" >Full Names: </label>
-						<input type="text" name="fullname" id="name" class="personal-detail-input" required>
-					</div>
-					<div class="subsection-two">
-						<label for="email"  class="personal-detail-label">Email: </label>
-						<input type="email" id="email" class="personal-detail-input" name="email" required>
-					</div>
-					<div class="subsection-two">
-						<label for="date"  class="personal-detail-label">Date: </label>
-						<input type="date" id="date" class="personal-detail-input" name="date" required>
-						<input type="hidden" id="date_value" name="age">
-					</div>
-					<div class="subsection-two">
-						<label for="phone"  class="personal-detail-label">Phone Number:</label>
-						<input type="text" id="phone" class="personal-detail-input" name="phone_number" required>
-					</div>
-				</div>
-			</section>
-			<section class="section-three section-one body-sections">
-				<p class="section-one-heading">What is your favorite food?</p>
-			</section>
-			<section class="section-four body-sections input-sections">
-				<div class="check-box-container">
-					<div>
-						<label for="pizza" class="personal-detail-label">Pizza</label>
-						<input type="checkbox" id="pizza" class="radio-inputs check-box-style" name="pizza">
-					</div>
-					<div>
-						<label for="pasta" class="personal-detail-label">Pasta</label>
-						<input type="checkbox" id="pasta" class="radio-inputs check-box-style" name="pasta">
-					</div>
-					<div>
-						<label for="pap" class="personal-detail-label">Pap & Wors</label>
-						<input type="checkbox" id="pap" class="radio-inputs check-box-style" name="pap">
-					</div>
-					<div>
-						<label for="other" class="personal-detail-label">Other</label>
-						<input type="checkbox" id="other" class="radio-inputs check-box-style" name="other">
-					</div>
-				</div>
-			</section>
-			<section class="section-five section-one body-sections">
-				<p class="section-one-heading">Please rate your level of agreement.</p>
-			</section>
-			<section class="radio-button-list input-sections body-sections">
-				<section class="subsection-six subsection-two">
-					<p class="personal-detail-label">On a scale 1 to 5, with 1 being "strongly agree" and 5 being "strongly disagree."</p>
-				</section>
-				<section>
-					<section class="radio-question subsection-two">
-						<p class="personal-detail-label">I like to watch movies</p>
-					</section>
-					<section class="radio-amswer section-two-info radio-section-scale">
-						<input type="radio" id="movie-1" class="radio-buttons"  name="movie" value="1" required>
-						<label for="movie-1">1</label>
-						<input type="radio" id="movie-2" class="radio-buttons" name="movie" value="2" required>
-						<label for="movie-2" >2</label>
-						<input type="radio" id="movie-3" class="radio-buttons" name="movie" value="3" required>
-						<label for="movie-3">3</label>
-						<input type="radio" id="movie-4" class="radio-buttons" name="movie" value="4" required>
-						<label for="movie-4">4</label>
-						<input type="radio" id="movie-5" class="radio-buttons" name="movie" value="5" required>
-						<label for="movie-5">5</label>
-					</section>
-					<section class="radio-question subsection-two">
-						<p class="personal-detail-label">I like to listen to radio</p>
-					</section>
-					<section class="radio-amswer section-two-info radio-section-scale">
-						<input type="radio" id="radio-1" class="radio-buttons"  name="radio" value="1" required>
-						<label for="radio-1" >1</label>
-						<input type="radio" id="radio-2" class="radio-buttons" name="radio" value="2" required>
-						<label for="radio-2" >2</label>
-						<input type="radio" id="radio-3" class="radio-buttons" name="radio" value="3" required>
-						<label for="radio-3">3</label>
-						<input type="radio" id="radio-4" class="radio-buttons" name="radio" value="4" required>
-						<label for="radio-4">4</label>
-						<input type="radio" id="radio-5" class="radio-buttons" name="radio" value="5" required>
-						<label for="radio-5">5</label>
-					</section>
-					<section class="radio-question subsection-two">
-							<p class="personal-detail-label">I like to eact out</p>
-					</section>
-					<section class="radio-amswer section-two-info radio-section-scale">
-						<input type="radio" id="eat-1" class="radio-buttons" name="eat" value="1" required>
-						<label for="eat-1" >1</label>
-						<input type="radio" id="eat-2" class="radio-buttons" name="eat" value="2" required>
-						<label for="eat-2" >2</label>
-						<input type="radio" id="eat-3" class="radio-buttons" name="eat" value="3" required>
-						<label for="eat-3">3</label>
-						<input type="radio" id="eat-4" class="radio-buttons" name="eat" value="4" required>
-						<label for="eat-4">4</label>
-						<input type="radio" id="eat-5" class="radio-buttons" name="eat" value="5" required>
-						<label for="eat-5">5</label>
-					</section>
-					<section class="radio-question subsection-two">
-						<p class="personal-detail-label">I like to watch TV</p>
-					</section>
-					<section class="radio-amswer section-two-info radio-section-scale">
-						<input type="radio" id="tv-1" class="radio-buttons" name="tv" value="1" required>
-						<label for="tv-1" >1</label>
-						<input type="radio" id="tv-2" class="radio-buttons" name="tv" value="2" required>
-						<label for="tv-2" >2</label>
-						<input type="radio" id="tv-3" class="radio-buttons" name="tv" value="3" required>
-						<label for="tv-3">3</label>
-						<input type="radio" id="tv-4" class="radio-buttons" name="tv" value="4" required>
-						<label for="tv-4">4</label>
-						<input type="radio" id="tv-5" class="radio-buttons" name="tv" value="5" required>
-						<label for="tv-5">5</label>
-					</section>
-				</section>
-			</section>
-			<section class="submit-section">
-				<button class="submit-button">Submit</button>
-			</section>
-		</section>
-		</form>
-	</section>
-</body>
-</html>
-<script src="https://kit.fontawesome.com/05347b7874.js" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            </fieldset>
+            </div>
+            <div class="flex justify-center p-5">
+                <button class="bg-gradient-to-b p-1 pr-5 pl-5 from-blue-400 to-blue-400 rounded-md border border-gray-200 shadow-2xl shadow-gray-900">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

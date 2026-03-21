@@ -41,28 +41,12 @@ $(document).ready( function() {
 
 	});
 
-	function checkAge(dateStr) {
-    	
-    	var birthDate = new Date(dateStr);
-    
-    	var currentDate = new Date();
-    
-    	var dateDifference = currentDate - birthDate;
-    
-    	var age = Math.floor(dateDifference / (1000 * 60 * 60 * 24 * 365));
-    
-    	return age;
-   	}
-
-   	$("input[name='date']").on("input", function() {
-   		const date = $(this).val();
-   		const age = checkAge(date);
+   	$("input[name='age']").on("input", function() {
+   		const age = parseInt($(this).val());
 
    		if (age < 5 || age > 120) {
-   			alert("You must be over 5 year old, and younger than 120 years!");
+   			alert("You must be over 5 years old, and younger than 120 years!");
    			
-   		} else {
-   			parseInt($("#date_value").val(age));
    		}
 
 
@@ -72,20 +56,22 @@ $(document).ready( function() {
         $(".mobile-options").slideToggle();   
     });
 
-	if ($(".sucess-message").text().trim() != ""){
-			$(".loading-icon").hide();
-			$(".erver-feedback").fadeIn();
-			$(".result result-1").fadeIn();
+	if ($(".success-message").text().trim() != ""){
+			$(".overlay").hide();
+			$('.spinner').hide();
+			$('.message-box').fadeIn();
+			$('.success').fadeIn();
 	}
 
 	if ($(".error-message").text().trim() != ""){
-		$(".loading-icon").hide();
-		$(".server-feedback").fadeIn();
-		$(".result-2").fadeIn();
+		$(".overlay").hide();
+		$('.spinner').hide();
+		$(".message-box").fadeIn();
+		$(".error").fadeIn();
 	}
 
 	$("#form").submit(function(){
-		$(".page-pop-up").fadeIn();
+		$(".overlay").fadeIn();
 	});
 
 	$(".menu-item-click").click(function(){

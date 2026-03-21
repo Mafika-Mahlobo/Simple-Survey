@@ -39,14 +39,14 @@ def submit():
     if request.method == "POST":
         name = request.form.get("fullname", "").strip()
         email = request.form.get("email", "").strip()
-        age = request.form.get("age").strip()
-        phone = request.form.get("phone_number")
+        age = int(request.form.get("age", "0").strip())
+        phone = request.form.get("phone_number", "").strip()
 
 
-        pizza = int(request.form.get("pizza", "0"))
-        pasta = int(request.form.get("pasta", "0"))
-        pap = int(request.form.get("pap", "0"))
-        other = int(request.form.get("pizza", "0"))
+        pizza = 1 if request.form.get("pizza") else 0
+        pasta = 1 if request.form.get("pasta") else 0
+        pap = 1 if request.form.get("pap") else 0
+        other = 1 if request.form.get("other") else 0
 
         movie = int(request.form["movie"])
         radio = int(request.form["radio"])
@@ -55,18 +55,16 @@ def submit():
 
         data = (name, email, age, phone, pizza, pasta, pap, other, movie, radio, eat, tv)
 
-        validate_email = check_email((email,))
-        if (not validate_email == True):
+        validate_email = check_email(email)
+        if validate_email:
+            return render_template("index.html", error="Oops! You've already sent in your response")
+        else:
             response = add(data)
 
-            if (response == True):
+            if response == True:
                 return render_template("index.html", success="Thank you for your contribution!")
-            if (not response == True):
-                return render_template("index.html", error="Testing not true")
             else:
-                return render_template("index.html", error="Testing else")
-            
-        return render_template("index.html", error="Oops! You’ve already sent in your response")
+                return render_template("index.html", error=f"Error saving survey: {response}")
 
 
 if __name__ == "__main__":
