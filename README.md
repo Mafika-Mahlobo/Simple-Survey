@@ -1,6 +1,6 @@
 # Survey web application
 
-This is a dynamic web-based survey application built with Flask, Python, HTML, CSS, and jQuery. The platform allows users to submit survey responses and view live aggregated results in real-time.
+This is a dynamic web-based survey application built with Flask, Python, HTML, Tailwindcss, and jQuery. The platform allows users to submit survey responses and view live aggregated results in real-time.
 
 This project was developed as part of a software development internship application at  [Tshimologong Digital Innovation Precinct](https://tshimologong.joburg/).
 

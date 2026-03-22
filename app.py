@@ -16,7 +16,7 @@ def survery_results():
 
     total = total_surveys()
     if (total == 0):
-        return render_template("results.html", results_message="No Survey results available.")
+        return render_template("results.html", results_message="No survey results available.")
     ave_age = round(average_age(), 2)
     max_name = oldest()[0]
     max_age = oldest()[1]
