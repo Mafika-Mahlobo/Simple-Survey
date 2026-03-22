@@ -39,9 +39,18 @@ def submit():
     if request.method == "POST":
         name = request.form.get("fullname", "").strip()
         email = request.form.get("email", "").strip()
-        age = int(request.form.get("age", "0").strip())
+        age_str = request.form.get("age", "").strip()
         phone = request.form.get("phone_number", "").strip()
-
+        
+        # Validate age on backend
+        try:
+            age = int(age_str)
+            if age < 5 or age > 120:
+                return render_template("index.html", error="Age must be between 5 and 120 years old.")
+        except (ValueError, TypeError):
+            return render_template("index.html", error="Please enter a valid age.")
+        
+        print(name, email, age, phone)
 
         pizza = 1 if request.form.get("pizza") else 0
         pasta = 1 if request.form.get("pasta") else 0
@@ -56,15 +65,16 @@ def submit():
         data = (name, email, age, phone, pizza, pasta, pap, other, movie, radio, eat, tv)
 
         validate_email = check_email(email)
-        if validate_email:
+        if validate_email == True:
             return render_template("index.html", error="Oops! You've already sent in your response")
+        elif validate_email != False:
+            return render_template("index.html", error=validate_email)
+        
+        response = add(data)
+        if response == True:
+            return render_template("index.html", success="Thank you for your contribution!")
         else:
-            response = add(data)
-
-            if response == True:
-                return render_template("index.html", success="Thank you for your contribution!")
-            else:
-                return render_template("index.html", error=f"Error saving survey: {response}")
+            return render_template("index.html", error=f"Error saving survey: {response}")
 
 
 if __name__ == "__main__":

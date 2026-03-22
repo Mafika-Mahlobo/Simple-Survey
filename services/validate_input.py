@@ -27,13 +27,11 @@ def check_email(email):
 	query = "SELECT * FROM Survey WHERE `email` = %s"
 
 	try:
-		cursor.execute(query, email)
+		cursor.execute(query, (email,))
 		respose = cursor.fetchall()
 
 		if (len(respose) > 0):
-			print("response len > 0")
 			return True
-		print("repsonse len <= 0")
 		return False
 		
 	

@@ -16,7 +16,6 @@ def total_surveys():
 	conn = get_DBconnection()
 
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -66,7 +65,6 @@ def average_age():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -98,7 +96,6 @@ def oldest():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -128,7 +125,6 @@ def youngest():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -158,7 +154,6 @@ def pizza():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -188,7 +183,6 @@ def pasta():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -216,7 +210,6 @@ def pap_wors():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -245,7 +238,6 @@ def movie():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -273,7 +265,6 @@ def radio():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -301,7 +292,6 @@ def eating_out():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")
@@ -330,7 +320,6 @@ def tv():
 	conn = get_DBconnection()
 	
 	if conn:
-		print("Database connected!")
 		cursor = conn.cursor()
 	else:
 		print("No DB connection")

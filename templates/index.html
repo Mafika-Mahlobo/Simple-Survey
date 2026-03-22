@@ -1,37 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="flex flex-col bg-gray-100 h-fit">
+    <section class="flex flex-col bg-gray-100 h-full">
         <form action="/submit" method="post" id="form">
             <div class="flex flex-col flex-wrap md:grid grid-cols-3">
                 <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl">
                 <legend>Personal information</legend>
-                <label class="pt-5" for="name">Full name: </label>
-                <input type="text" class="border border-blue-700 rounded-md text-center" name="fullname" id="name">
+                <label class="pt-5" for="fullname">Full name: </label>
+                <input type="text" class="border border-blue-700 rounded-md text-center" name="fullname" id="name" required>
                 <label class="pt-5"  for="email">Email: </label>
-                <input type="text" class="border border-blue-700 rounded-md text-center" name="email" id="email">
+                <input type="email" class="border border-blue-700 rounded-md text-center" name="email" id="email" required>
                 <label class="pt-5" for="age">Age: </label>
-                <input type="number" class="border border-blue-700 rounded-md text-center" name="age" id="age">
+                <input type="number" class="border border-blue-700 rounded-md text-center" name="age" id="age" required min="5" max="120">
                 <label class="pt-5" for="phone">Phone number: </label>
-                <input type="number" class="border border-blue-700 rounded-md text-center" name="phone_number" id="phone">
+                <input type="text" class="border border-blue-700 rounded-md text-center" name="phone_number" id="phone" required>
             </fieldset>
-            <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl">
+            <fieldset class="flex flex-col m-5 p-5 border border-gray-300 rounded-2xl shadow-xl shadow-gray-900 md:max-w-2xl" required="">
                 <legend class="pt-5" for="">What is your favorite food? </legend>
                 <ul class="p-1">
                     <li>
-                        <input class="" type="checkbox" name="pizza" id="g">
+                        <input class="" type="checkbox" name="pizza" id="g" required>
                         <label>Pizza</label>
                     </li>
                     <li>
-                        <input class="" type="checkbox" name="pasta">
+                        <input class="" type="checkbox" name="pasta" required>
                         <label>Pasta</label>
                     </li>
                     <li>
-                        <input class="" type="checkbox" name="pap">
+                        <input class="" type="checkbox" name="pap" required>
                         <label>Pap and Wors</label>
                     </li>
                     <li>
-                        <input  class="" type="checkbox" name="other">
+                        <input  class="" type="checkbox" name="other" required>
                         <label>Other</label>
                     </li>
                 </ul>

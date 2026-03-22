@@ -40,39 +40,56 @@ $(document).ready( function() {
 		}
 
 	});
+	
+	$("#form").on("submit", function(e) {
+		$(".overlay").fadeIn(300);
+	});
 
-   	$("input[name='age']").on("input", function() {
-   		const age = parseInt($(this).val());
+	$('.overlay-btn').click(() => {
+		$('.overlay').fadeOut(500, function() {
+			// Reset overlay to default state
+			$('.spinner').show();
+			$('.success').hide();
+			$('.error').hide();
+		});
+	});
 
-   		if (age < 5 || age > 120) {
-   			alert("You must be over 5 years old, and younger than 120 years!");
-   			
-   		}
-
-
-   	});
+	$('.nav-btn').click(() => {
+		$('.overlay').fadeIn(300);
+	})
 
     $(".mobile-nav").click(function(){
         $(".mobile-options").slideToggle();   
     });
 
 	if ($(".success-message").text().trim() != ""){
-			$(".overlay").hide();
-			$('.spinner').hide();
-			$('.message-box').fadeIn();
-			$('.success').fadeIn();
+		$('.overlay').show();
+		$('.spinner').hide();
+		$('.success').css('display', 'flex').hide().fadeIn(400);
+		// Auto-close after 5 seconds
+		setTimeout(() => {
+			$('.overlay').fadeOut(500, function() {
+				$('.spinner').show();
+				$('.success').hide();
+				$('.error').hide();
+			});
+		}, 5000);
 	}
 
 	if ($(".error-message").text().trim() != ""){
-		$(".overlay").hide();
+		console.log($('.error-message').text());
+		$('.overlay').show();
 		$('.spinner').hide();
-		$(".message-box").fadeIn();
-		$(".error").fadeIn();
+		$('.error').css('display', 'flex').hide().fadeIn(400);
+		// Auto-close after 5 seconds
+		setTimeout(() => {
+			$('.overlay').fadeOut(500, function() {
+				$('.spinner').show();
+				$('.success').hide();
+				$('.error').hide();
+			});
+		}, 5000);
 	}
-
-	$("#form").submit(function(){
-		$(".overlay").fadeIn();
-	});
 
 	$(".menu-item-click").click(function(){
 		$(".page-pop-up").show();

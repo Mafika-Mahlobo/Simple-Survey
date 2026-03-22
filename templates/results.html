@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if results_message %}
+        <div class="flex flex-col bg-gray-100 h-screen w-screen justify-center items-center">
+            <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">{{ results_message }}</p>
+        </div>
+    {% else  %}
     <div class="flex flex-col items-center bg-gray-100 h-fit">
         <h1 class="text-2xl text-gray-700 font-semibold font-mono">Survey Results</h1>
-        <div class="flex flex-wrap md:max-w-8xl">
-            <fieldset class="border border-gray-900 rounded-md p-5 m-5 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
+        <div class="flex flex-wrap md:max-w-8xl p-5">
+            <fieldset class="border border-gray-900 rounded-md p-7 m-7 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Total number of surveys:  {{ total }}</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Average Age: {{ average_age }}</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Oldest participant: {{ old_name }} ({{ old_age }} years old)</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Youngest participant: {{young_name}} ({{ young_age }} years old)</p>
             </fieldset>
-            <fieldset class="border border-gray-900 rounded-md p-5 m-5 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
+            <fieldset class="border border-gray-900 rounded-md p-7 m-7 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">People who like Pizza: {{ pizza }}%</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">People who like Pasta: {{ pasta }}%</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">People who like Pap and Wors: {{ pap }}%</p>
             </fieldset>
-            <fieldset class="border border-gray-900 rounded-md p-5 m-5 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
+            <fieldset class="border border-gray-900 rounded-md p-7 m-7 text-gray-300 w-full md:flex md:justify-center shadow-xl shadow-gray-900">
                 <legend class="text-gray-700">Average Preferences</legend>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Watching movies: {{ movie_rating }}%</p>
                 <p class="text-gray-700 p-2 m-3 border border-gray-800 rounded-md shadow-md shadow-blue-600">Listening to radio: {{ radio }}%</p>
@@ -23,4 +28,5 @@
             </fieldset>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
